@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Блог / Все посты{% endblock %}
+  {% block content %}
+      <h1 class="text-light text-center fw-bold">Посты</h1>
+      <div class="posts_container d-flex gap-3 flex-wrap jusify-content-centner mx-auto">
+        {% for post in posts %}
+          {% if post.is_published == True %}
+          <div class="card" style="width: 250px;">
+           <img src="..." alt="..." class="card-img-top">
+           <div class="card-body">
+             <h5 class="card-title">{{ post.title }}</h5>
+             <p class="card-text">{{ post.text }}</p>
+              <form action="{% url 'post_like' %}" method="post" class="d-flex flex-row">{% csrf_token %}
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button class="bg-transparent border-0">
+                  <img src="{% static 'blog/like.png' %}" height="30" width="30">
+                </button>
+                <span class="texy-secondary">{{ post.likes}}</span>
+              </form>
+           </div>
+         </div>
+         {% endif %}
+         {% endfor %}
+       </div>
+       {% endblock %}

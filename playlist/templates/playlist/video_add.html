@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+</head>
+
+<body class="bg-dark">
+    <header>
+        {% include 'header.html' %}
+    </header>
+
+    <main>
+        <h1 class="text-light text-center fw-bold">Новое видео</h1>
+        <form class="d-flex flex-column gap-2 mx-auto" style="max-width: 300px;">
+            <input type="text" class="form-control" placeholder="Название" name="title">
+            <input type="text" class="form-control" placeholder="Код вставки" name="embed_code">
+            <button class="btn btn-danger" type="submit">Добавить</button>
+        </form>
+    </main>
+    <footer>
+        {% include 'footer.html %'}
+    </footer>
+</body>
+
+</html>

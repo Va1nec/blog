@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+</head>
+
+<body class="bg-dark">
+    <header>
+        {% include 'header.html' %}
+    </header>
+
+    <main>
+        {% block content %}
+        <div class="d-flex flex-column flex-sm-row justify-cotent-center gap-3 mb-4">
+            <h1 class="text-light text-center fw-bold">Плейлист</h1>
+            <a href="{% url 'video_add' %}" class="btn btn-danger my-auto mx-auto mx-sm-0">
+                Добавить
+            </a>
+        </div>
+        <div class="posts_container d-flex gap-3 flex-wrap jusify-content-centner mx-auto">
+            {% for video in videos %}
+            <div class="card">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.embed_code }}"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="card-body">
+                    <h5 class="card-title text-light">{{ video.title }}</h5>
+                    <p class="card-text text-secondary">{{ video.created_at }}</p>
+                </div>
+            </div>
+{% endfor %}
+        </div>
+        {% endblock %}
+    </main>
+</body>
+
+</html>
